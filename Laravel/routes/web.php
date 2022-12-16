@@ -15,8 +15,14 @@ use App\Models\Article;
 */
 
 Route::get('/', function () {
-    return view('index', [
+    return view('articles', [
         'heading' => 'Latest Articles',
         'articles' => Article::all()
+    ]);
+});
+
+Route::get('/articles/{id}', function ($id) {
+    return view('article', [
+        'article' => Article::find($id)
     ]);
 });
