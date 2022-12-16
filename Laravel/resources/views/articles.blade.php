@@ -1,25 +1,23 @@
 @extends('layout')
 
 @section('content')
+@include('partials._hero')
+@include('partials._search')
 
-<h1>{{$heading}}</h1>
+<div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
 
-@if(count($articles) == 0)
+    @if(count($articles) == 0)
 
-<p>No articles found</p>
+    <p>No articles found</p>
 
-@else
+    @else
 
-@foreach($articles as $article)
+    @foreach($articles as $article)
+        <x-article-card :article="$article" />
+    @endforeach
 
-<h2>
-    <a href="/articles/{{$article['id']}}"> {{$article['title']}} </a>
-</h2>
+    @endif
 
-<p>{{$article['description']}}</p>
-
-@endforeach
-
-@endif
+</div>
 
 @endsection
