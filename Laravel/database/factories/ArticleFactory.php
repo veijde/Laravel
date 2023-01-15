@@ -17,7 +17,7 @@ class ArticleFactory extends Factory
     public function definition()
     {
 
-        $tags = ['spikeball', 'tournament', 'news', 'top players', 'exclusive', 'interview', 'world tour'];
+        $tags = ['spikeball', 'tournament', 'top players', 'exclusive', 'interview', 'world tour'];
 
         return [
             'title' => fake()->sentence(),

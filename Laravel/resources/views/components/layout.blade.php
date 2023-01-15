@@ -29,7 +29,18 @@
 
 <body class="mb-48 bg-backgroundcolor text-white">
     <nav class="flex justify-between items-center mb-4">
-        <a href="/"><img class="w-24" src="{{ asset('images/logo.png') }}" alt="" class="logo" /></a>
+        <div class="flex items-center mb-4">
+            <a href="/"><img class="w-24" src="{{ asset('images/logo.png') }}" alt=""
+                    class="logo" /></a>
+            <ul class="flex space-x-6 ml-6 text-lg">
+                <li>
+                    <a href="/faq" class="hover:text-laravel"><i class="fa-solid fa-question"></i> FAQ</a>
+                </li>
+                <li>
+                    <a href="/about" class="hover:text-laravel"><i class="fa-solid fa-hippo"></i> About</a>
+                </li>
+            </ul>
+        </div>
         <ul class="flex space-x-6 mr-6 text-lg">
             @auth
                 <li>

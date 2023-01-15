@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\FaqController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,12 @@ Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth
 
 // Promote user
 Route::get('/users/{user}/promote', [UserController::class, 'promote'])->middleware('auth');
+
+// Show faq
+Route::get('/faq', [FaqController::class, 'index']);
+
+Route::delete('/faq/categories/{category}', [FaqController::class, 'destroy']);
+
+Route::get('/about', function () {
+    return view('about');
+});
