@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use Illuminate\Support\Facades\Route;
 use App\Models\Article;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +28,26 @@ Route::post('/articles', [ArticleController::class, 'store']);
 // Show edit form
 Route::get('/articles/{article}/edit', [ArticleController::class, 'edit']);
 
-//Update article
+// Update article
 Route::put('/articles/{article}', [ArticleController::class, 'update']);
 
-//Delete article
+// Delete article
 Route::delete('/articles/{article}', [ArticleController::class, 'destroy']);
 
 // Show single article
 Route::get('/articles/{article}', [ArticleController::class, 'show']);
 
+// Show register/create form
+Route::get('/register', [UserController::class, 'create']);
+
+// Create new users
+Route::post('/users', [UserController::class, 'store']);
+
+// Log out
+Route::post('/logout', [UserController::class, 'logout']);
+
+// Show login form
+Route::get('/login', [UserController::class, 'login']);
+
+// Log in user
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
