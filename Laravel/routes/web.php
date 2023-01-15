@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
@@ -54,3 +53,15 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 
 // Log in user
 Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('guest');
+
+// Show profile
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware('auth');
+
+// Show edit user form
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth');
+
+// Update user
+Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth');
+
+// Promote user
+Route::get('/users/{user}/promote', [UserController::class, 'promote'])->middleware('auth');

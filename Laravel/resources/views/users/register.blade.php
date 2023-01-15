@@ -30,6 +30,14 @@
             </div>
 
             <div class="mb-6">
+                <label for="birthday" class="inline-block text-lg mb-2">Birthday</label>
+                <input datepicker datepicker-format="dd/mm/yyyy" type="text" class="border border-gray-200 rounded p-2 w-full" name="birthday" value="{{old('birthday')}}" />
+                @error('birthday')
+                    <p class="text-red-500 text-xs-mt1">{{$message}}</p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
                 <label for="password" class="inline-block text-lg mb-2">
                     Password
                 </label>

@@ -16,13 +16,12 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+
+        $tags = ['spikeball', 'tournament', 'news', 'top players', 'exclusive', 'interview', 'world tour'];
+
         return [
             'title' => fake()->sentence(),
-            'tags' => 'laravel, api, backend',
-            'company' => fake()->company(),
-            'email' => fake()->companyEmail(),
-            'website' => fake()->url(),
-            'location' => fake()->city(),
+            'tags' => implode(",", fake()->randomElements($tags, 3, false)),
             'description' => fake()->paragraph(),
         ];
     }

@@ -27,21 +27,23 @@ class ArticleController extends Controller
     // Show Create Form
     public function create()
     {
+        if(!auth()->user()->admin) {
+            abort(403, 'Unautherized');
+        }
+
         return view('articles.create');
     }
 
     // Store Acticle data
     public function store(Request $request)
     {
+
+        if(!auth()->user()->admin) {
+            abort(403, 'Unautherized');
+        }
+
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => ['required', Rule::unique(
-                'articles',
-                'company'
-            )],
-            'location' => 'required',
-            'website' => 'required',
-            'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required'
         ]);
@@ -60,6 +62,10 @@ class ArticleController extends Controller
     // Show edit form
     public function edit(Article $article)
     {
+        if(!auth()->user()->admin) {
+            abort(403, 'Unautherized');
+        }
+
         return view('articles.edit', ['article' => $article]);
     }
 
@@ -67,17 +73,12 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
 
-        // Logged in user is owner
-        if($article->user_id != auth()->id()) {
+        if(!auth()->user()->admin) {
             abort(403, 'Unautherized');
         }
 
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => 'required',
-            'location' => 'required',
-            'website' => 'required',
-            'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required'
         ]);
@@ -94,8 +95,7 @@ class ArticleController extends Controller
     // Delete Article
     public function destroy(Article $article) {
 
-        // Logged in user is owner
-        if($article->user_id != auth()->id()) {
+        if(!auth()->user()->admin) {
             abort(403, 'Unautherized');
         }
 
@@ -105,6 +105,9 @@ class ArticleController extends Controller
     
     public function manage()
     {
+        if(!auth()->user()->admin) {
+            abort(403, 'Unautherized');
+        }
         return view('articles.manage', ['articles' => auth()->user()->articles()->get()]);
     }
 }

@@ -12,9 +12,10 @@
 
             <div class="mb-6">
                 <label for="email" class="inline-block text-lg mb-2">Email</label>
-                <input type="email" class="border border-gray-200 rounded p-2 w-full" name="email" value="{{old('email')}}" />
+                <input type="email" class="border border-gray-200 rounded p-2 w-full" name="email"
+                    value="{{ old('email') }}" />
                 @error('email')
-                    <p class="text-red-500 text-xs-mt1">{{$message}}</p>
+                    <p class="text-red-500 text-xs-mt1">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -22,12 +23,18 @@
                 <label for="password" class="inline-block text-lg mb-2">
                     Password
                 </label>
-                <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password" value="{{old('password')}}" />
+                <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password"
+                    value="{{ old('password') }}" />
             </div>
 
             @error('password')
-                    <p class="text-red-500 text-xs-mt1">{{$message}}</p>
-                @enderror
+                <p class="text-red-500 text-xs-mt1">{{ $message }}</p>
+            @enderror
+
+            <div class="form-group mb-3">
+                <label for="remember">Remember me</label>
+                <input type="checkbox" name="remember" value="1">
+            </div>
 
 
             <div class="mb-6">

@@ -7,11 +7,10 @@
             <h3 class="text-2xl">
                 <a href="/articles/{{ $article->id }}">{{ $article->title }}</a>
             </h3>
-            <div class="text-xl font-bold mb-4">{{ $article->company }}</div>
             <x-article-tags :tagsCsv="$article->tags" />
             <div class="text-lg mt-4">
-                <i class="fa-solid fa-location-dot"></i>
-                {{ $article->location }}
+                <i class="fa-solid fa-calendar"></i>
+                {{ \Carbon\Carbon::parse($article->created_at)->format('d/m/Y')}}
             </div>
         </div>
     </div>
