@@ -50,6 +50,8 @@ class ArticleController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
+        $formFields['user_id'] = auth()->id();
+
         Article::create($formFields);
 
         return redirect('/')->with('message', 'Article created successfully');
@@ -64,6 +66,12 @@ class ArticleController extends Controller
     // Update Acticle data
     public function update(Request $request, Article $article)
     {
+
+        // Logged in user is owner
+        if($article->user_id != auth()->id()) {
+            abort(403, 'Unautherized');
+        }
+
         $formFields = $request->validate([
             'title' => 'required',
             'company' => 'required',
@@ -85,7 +93,18 @@ class ArticleController extends Controller
 
     // Delete Article
     public function destroy(Article $article) {
+
+        // Logged in user is owner
+        if($article->user_id != auth()->id()) {
+            abort(403, 'Unautherized');
+        }
+
         $article->delete();
         return redirect('/')-> with('message', 'Article deletes succesfully');
-    } 
+    }
+    
+    public function manage()
+    {
+        return view('articles.manage', ['articles' => auth()->user()->articles()->get()]);
+    }
 }

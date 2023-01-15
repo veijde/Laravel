@@ -20,34 +20,37 @@ use App\Http\Controllers\ArticleController;
 Route::get('/', [ArticleController::class, 'index']);
 
 // Show create form
-Route::get('/articles/create', [ArticleController::class, 'create']);
+Route::get('/articles/create', [ArticleController::class, 'create'])->middleware('auth');
 
 // Store article data
-Route::post('/articles', [ArticleController::class, 'store']);
+Route::post('/articles', [ArticleController::class, 'store'])->middleware('auth');
 
 // Show edit form
-Route::get('/articles/{article}/edit', [ArticleController::class, 'edit']);
+Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->middleware('auth');
 
 // Update article
-Route::put('/articles/{article}', [ArticleController::class, 'update']);
+Route::put('/articles/{article}', [ArticleController::class, 'update'])->middleware('auth');
 
 // Delete article
-Route::delete('/articles/{article}', [ArticleController::class, 'destroy']);
+Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->middleware('auth');
+
+// Show manage page
+Route::get('/articles/manage', [ArticleController::class, 'manage'])->middleware('auth');
 
 // Show single article
 Route::get('/articles/{article}', [ArticleController::class, 'show']);
 
 // Show register/create form
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 // Create new users
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
 // Log out
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 // Show login form
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 // Log in user
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('guest');
