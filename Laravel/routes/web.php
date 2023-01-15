@@ -15,10 +15,24 @@ use App\Models\Article;
 |
 */
 
+// All articles
 Route::get('/', [ArticleController::class, 'index']);
 
+// Show create form
 Route::get('/articles/create', [ArticleController::class, 'create']);
 
+// Store article data
 Route::post('/articles', [ArticleController::class, 'store']);
 
+// Show edit form
+Route::get('/articles/{article}/edit', [ArticleController::class, 'edit']);
+
+//Update article
+Route::put('/articles/{article}', [ArticleController::class, 'update']);
+
+//Delete article
+Route::delete('/articles/{article}', [ArticleController::class, 'destroy']);
+
+// Show single article
 Route::get('/articles/{article}', [ArticleController::class, 'show']);
+
